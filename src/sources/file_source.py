@@ -18,14 +18,7 @@ class JSONTaskSource:
         with open(self._file_path, 'r', encoding='utf-8') as f:
             for data in json.load(f):
 
-                if "id" not in data:
-                    raise ValueError(
-                        f"Missing required field 'id' in task {data} "
-                        f"from file {self._file_path}"
-                    )
-
                 task = Task(
-                    task_id=data.get("id"),
                     payload=data.get("payload", {}),
                 )
                 self._tasks.append(task)

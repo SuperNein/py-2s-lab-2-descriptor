@@ -1,4 +1,4 @@
 [
-    {"id": 1, "payload": {"data": "task_1"}},
-    {"id": 2, "payload": {}}
+    {"payload": {"data": "task_1"}},
+    {"payload": {}, "priority":  "high"}
 ]

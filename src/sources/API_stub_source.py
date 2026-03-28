@@ -11,7 +11,7 @@ class APIStubTasksSource:
 
     def _request(self) -> None:
         self._data = [
-            {"id": i, "payload": {"data": f"task_{i}"}}
+            {"payload": {"data": f"task_{i}"}}
             for i in range(API_STUB_TASKS)
         ]
 
@@ -20,6 +20,6 @@ class APIStubTasksSource:
             self._request()
 
         return [
-            Task(task_id=task["id"], payload=task["payload"])
+            Task(payload=task["payload"])
             for task in self._data
         ]

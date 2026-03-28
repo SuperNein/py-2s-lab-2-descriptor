@@ -9,8 +9,7 @@ class GeneratorTaskSource:
         self.payload = payload or {}
 
     def get_tasks(self) -> Iterable[Task]:
-        for i in range(self._count):
+        for _ in range(self._count):
             yield Task(
-                task_id=i,
                 payload=self.payload,
             )
