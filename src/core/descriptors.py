@@ -6,6 +6,7 @@ from src.core.exceptions import InvalidPriorityError, InvalidStatusError
 
 
 class BaseDescriptor:
+    """Base descriptor class."""
     def __set_name__(self, owner: type, name: str) -> None:
         self.public_name = name
         self.private_name = f"_{name}"
@@ -17,6 +18,10 @@ class BaseDescriptor:
 
 
 class TaskIdDescriptor(BaseDescriptor):
+    """
+    Read-only descriptor for task id.
+    Set value of uuid4
+    """
     def __get__(self, instance: Optional[object], owner: type) -> Any:
         if instance is None:
             return self
@@ -31,6 +36,7 @@ class TaskIdDescriptor(BaseDescriptor):
 
 
 class CreatedAtDescriptor(BaseDescriptor):
+    """Format datetime value to 'Y-m-d H:M:S'"""
     def __get__(self, instance: Optional[object], owner: type) -> Any:
         if instance is None:
             return self
@@ -39,6 +45,7 @@ class CreatedAtDescriptor(BaseDescriptor):
 
 
 class PriorityDescriptor(BaseDescriptor):
+    """Validate value with enums.TaskPriority"""
     PRIORITIES = {p for p in TaskPriority}
 
     def __set__(self, instance: object, value: Any) -> None:
@@ -56,6 +63,7 @@ class PriorityDescriptor(BaseDescriptor):
 
 
 class StatusDescriptor(BaseDescriptor):
+    """Validate value with enums.TaskStatus"""
     STATUSES = {s for s in TaskStatus}
 
     def __set__(self, instance: object, value: Any) -> None:
