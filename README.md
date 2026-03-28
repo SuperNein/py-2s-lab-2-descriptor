@@ -25,6 +25,7 @@ py-2s-lab-2-descriptor
 │           
 ├───src
 │   │   main.py
+│   │   processing_simulation.py
 │   │   __init__.py
 │   │   
 │   ├───common
@@ -54,6 +55,7 @@ py-2s-lab-2-descriptor
 │           __init__.py
 │           
 └───tests
+    │   test_processing_simulation.py
     │   __init__.py
     │   
     ├───core
