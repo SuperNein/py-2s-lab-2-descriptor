@@ -9,7 +9,7 @@ from src.services.loader import TasksLoader
 def process_tasks(source: TaskSource) -> list[Task]:
     """
     Processing tasks from source simulation.
-    :return:    None
+    :return:    list of closed tasks
     """
     print(f"Start tasks from {source.__class__.__name__} processing...")
     loader = TasksLoader(source)
