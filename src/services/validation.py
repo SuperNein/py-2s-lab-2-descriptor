@@ -1,6 +1,6 @@
 from typing import Type, Any
 
-from src.protocols import TaskSource
+from src.protocols.sources import TaskSource
 
 
 class SourceValidator:

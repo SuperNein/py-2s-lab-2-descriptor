@@ -2,7 +2,7 @@ import json
 from typing import List, Optional, Iterable
 from pathlib import Path
 
-from src.models import Task
+from src.core.models import Task
 
 
 class JSONTaskSource:

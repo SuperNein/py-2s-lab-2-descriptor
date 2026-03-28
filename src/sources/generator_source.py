@@ -1,6 +1,6 @@
 from typing import Iterable, Any
 
-from src.models import Task
+from src.core.models import Task
 
 
 class GeneratorTaskSource:

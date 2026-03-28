@@ -1,13 +1,13 @@
 from pathlib import Path
 
-from src.protocols import TaskSource
-from src.loader import TasksLoader
+from src.protocols.sources import TaskSource
+from src.services.loader import TasksLoader
 from src.sources.generator_source import GeneratorTaskSource
 from src.sources.file_source import JSONTaskSource
 from src.sources.API_stub_source import APIStubTasksSource
 
 
-JSON_FILE_PATH = Path(__file__).parent / "tasks.json"
+JSON_FILE_PATH = Path(__file__).parent.parent / "examples" / "tasks.json"
 
 
 def process_tasks(source: TaskSource) -> None:
