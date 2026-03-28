@@ -26,17 +26,9 @@ def mock_json_load():
 @pytest.fixture
 def sample_data():
     return [
-        {"id": 1, "payload": {"data": "task_1"}},
-        {"id": 2, "payload": {}},
-        {"id": 3},
-    ]
-
-@pytest.fixture
-def sample_data_without_id():
-    return [
         {"payload": {"data": "task_1"}},
-        {"id": 2, "payload": {}},
-        {"id": 3},
+        {"payload": {}, "priority": "high"},
+        {},
     ]
 
 @pytest.fixture

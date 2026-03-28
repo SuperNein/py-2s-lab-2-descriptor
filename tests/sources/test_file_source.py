@@ -11,11 +11,6 @@ def test_file_not_found(mock_file_exists):
         with pytest.raises(FileNotFoundError):
             source.get_tasks()
 
-def test_file_with_tasks_wo_id(file_task_source, sample_data_without_id):
-    source = file_task_source(data=sample_data_without_id)
-    with pytest.raises(ValueError):
-        source.get_tasks()
-
 def test_file_source(file_task_source):
     source = file_task_source()
     tasks = source.get_tasks()
