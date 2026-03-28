@@ -54,11 +54,19 @@ py-2s-lab-2-descriptor
 │           __init__.py
 │           
 └───tests
-    │   conftest.py
-    │   test_loader.py
-    │   test_validation.py
     │   __init__.py
     │   
+    ├───core
+    │       test_descriptors.py
+    │       test_models.py
+    │       __init__.py
+    │           
+    ├───services
+    │       conftest.py
+    │       test_loader.py
+    │       test_validation.py
+    │       __init__.py
+    │           
     └───sources
             conftest.py
             test_API_stub_source.py
