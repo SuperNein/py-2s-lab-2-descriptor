@@ -1,13 +1,12 @@
-# Лабораторная работа 1
+# Лабораторная работа 2
 
-**Источники задач и контракты**
+**Модель задачи: дескрипторы и @property**
 
 ---
 
 ## Цель работы
 
-- Освоить duck typing и контрактное программирование на примере источников
-задач.
+-  Освоить управление доступом к атрибутам и защиту инвариантов доменной модели.
 
 ---
 
@@ -22,21 +21,32 @@ py-2s-lab-1-contract
 │   requirements.txt
 │   
 ├───examples
-│       main.py
 │       tasks.json
-│       __init__.py
 │           
 ├───src
-│   │   loader.py
-│   │   models.py
-│   │   protocols.py
-│   │   validation.py
+│   │   main.py
 │   │   __init__.py
 │   │   
 │   ├───common
 │   │       constants.py
 │   │       __init__.py
-│   │           
+│   │                
+│   ├───core
+│   │       descriptors.py
+│   │       enums.py
+│   │       exceptions.py
+│   │       models.py
+│   │       __init__.py
+│   │   
+│   ├───protocols
+│   │       sources.py
+│   │       __init__.py
+│   │
+│   ├───services
+│   │       loader.py
+│   │       validation.py
+│   │       __init__.py
+│   │      
 │   └───sources
 │           API_stub_source.py
 │           file_source.py
@@ -68,7 +78,7 @@ py-2s-lab-1-contract
 pip install -r requirements.txt
 
 # Запуск examples
-python -m examples.main
+python -m src.main
 
 # Покрытие тестами
 pytest tests/ --cov=src/ --cov-report=term-missing
@@ -84,9 +94,13 @@ pytest tests/ --cov=src/ --cov-report=term-missing
 
 ### Модель Task
 
-Пользовательский класс, сожержащий необходимую минимальную информацию:
+Пользовательский класс с атрибутами:
 - id — уникальный идентификатор задачи
-- payload — произвольные данные задачи
+- payload — произвольное описание задачи
+- priority - приоритет
+- status - статус задачи
+- created_at - время создания
+- is_closed - статус закрытия задачи
 
 ### Контракт источников
 
@@ -107,6 +121,5 @@ get_tasks() -> Iterable[Task]
 ## Выводы
 
 В ходе работы я освоил:
-- Принципы duck typing 
-- Принципы контрактного программирования
-- Тестирование с помощью мокирования поведения
+- Работу с доступом к атрибутам
+- Принцип работы data и non-data descriptors
