@@ -54,6 +54,7 @@ class PriorityDescriptor(BaseDescriptor):
 
         elif isinstance(value, int) and value in TaskPriority:
             validated_value = value
+
         else:
             raise InvalidPriorityError(
                 f"Priority must be one of {self.PRIORITIES}, got {value}"
