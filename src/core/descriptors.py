@@ -71,7 +71,7 @@ class StatusDescriptor(BaseDescriptor):
         if isinstance(value, TaskStatus):
             validated_value = value.value
 
-        elif isinstance(value, int) and value in TaskStatus:
+        elif isinstance(value, str) and value in TaskStatus:
             validated_value = value
         else:
             raise InvalidStatusError(
