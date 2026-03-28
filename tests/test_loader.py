@@ -2,7 +2,7 @@ from typing import Iterable
 
 import pytest
 
-from src.loader import TasksLoader
+from src.services.loader import TasksLoader
 
 
 def test_load_invalid_source(invalid_source):

@@ -1,6 +1,6 @@
 import pytest
 
-from src.validation import SourceValidator
+from src.services.validation import SourceValidator
 
 
 # Services
