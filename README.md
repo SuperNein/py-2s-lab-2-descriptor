@@ -13,7 +13,7 @@
 ## Структура проекта 
 
 ```
-py-2s-lab-1-contract
+py-2s-lab-2-descriptor
 │   .gitignore
 │   .pre-commit-config.yaml
 │   pyproject.toml
