@@ -9,3 +9,7 @@ class InvalidPriorityError(TaskError):
 class InvalidStatusError(TaskError):
     """Raised when an invalid status is given"""
     pass
+
+class InvalidStatusChangeError(TaskError):
+    """Raised when status change is invalid"""
+    pass

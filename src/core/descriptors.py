@@ -1,8 +1,13 @@
 import uuid
 from typing import Optional, Any
 
+from src.common.constants import VALID_STATUS_CHANGES
 from src.core.enums import TaskPriority, TaskStatus
-from src.core.exceptions import InvalidPriorityError, InvalidStatusError
+from src.core.exceptions import (
+    InvalidPriorityError,
+    InvalidStatusError,
+    InvalidStatusChangeError
+)
 
 
 class BaseDescriptor:
@@ -73,9 +78,23 @@ class StatusDescriptor(BaseDescriptor):
 
         elif isinstance(value, str) and value in TaskStatus:
             validated_value = value
+
         else:
             raise InvalidStatusError(
                 f"Priority must be one of {self.STATUSES}, got {value}"
+            )
+
+        previous_value = getattr(instance, self.private_name, None)
+
+        if previous_value is None:
+            if validated_value != TaskStatus.new:
+                raise InvalidStatusChangeError(
+                    f"Initial status must be 'new', got '{value}'"
+                )
+
+        elif validated_value not in VALID_STATUS_CHANGES[previous_value]:
+            raise InvalidStatusChangeError(
+                f"Status '{previous_value}' cannot be changed by '{validated_value}'"
             )
 
         setattr(instance, self.private_name, validated_value)
