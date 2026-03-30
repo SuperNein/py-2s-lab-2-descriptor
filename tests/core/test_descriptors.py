@@ -2,9 +2,14 @@ import pytest
 import uuid
 from datetime import datetime
 
+from src.common.constants import VALID_STATUS_CHANGES
 from src.core.models import Task
 from src.core.enums import TaskPriority, TaskStatus
-from src.core.exceptions import InvalidPriorityError, InvalidStatusError
+from src.core.exceptions import (
+    InvalidPriorityError,
+    InvalidStatusError,
+    InvalidStatusChangeError,
+)
 from src.core.descriptors import (
     BaseDescriptor,
     TaskIdDescriptor,
@@ -107,7 +112,7 @@ class TestStatusDescriptor:
         "status_value",
         [s.value for s in TaskStatus]
     )
-    def test_get_with_enums(self, task, status_value):
+    def test_get_with_str(self, task, status_value):
         task.status = status_value
         assert task.status == status_value
 
@@ -122,3 +127,24 @@ class TestStatusDescriptor:
     def test_get_with_invalid_values(self, task, invalid_status):
         with pytest.raises(InvalidStatusError):
             task.status = invalid_status
+
+    @pytest.mark.parametrize(
+        "status_value",
+        [s.value for s in TaskStatus]
+    )
+    def test_invalid_status_change(self, task, status_value):
+        task.status = status_value
+
+        for new_status in [
+            s for s in TaskStatus
+            if s not in VALID_STATUS_CHANGES[status_value]
+        ]:
+
+            with pytest.raises(InvalidStatusChangeError):
+                task.status = new_status
+
+    def test_invalid_initial_status_change(self, task):
+        delattr(task, '_status')
+
+        with pytest.raises(InvalidStatusChangeError):
+            task.status = TaskStatus.done
