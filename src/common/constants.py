@@ -7,6 +7,7 @@ VALID_STATUS_CHANGES = {
     TaskStatus.new: [
         TaskStatus.new,
         TaskStatus.in_progress,
+        TaskStatus.done,
         TaskStatus.cancelled,
     ],
     TaskStatus.in_progress: [
